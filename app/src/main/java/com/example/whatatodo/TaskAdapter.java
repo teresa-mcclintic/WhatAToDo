@@ -81,6 +81,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
         final EditText enter_task = (EditText)subView.findViewById(R.id.newTaskText);
         final EditText enter_date = (EditText)subView.findViewById(R.id.newTaskDate);
+        final int itemId  = tasks.getId();
 
         if(tasks!= null){
             enter_task.setText(tasks.getTask());
@@ -97,12 +98,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
             public void onClick(DialogInterface dialog, int which) {
                 final String task = enter_task.getText().toString();
                 final String date = enter_date.getText().toString();
+                final int id_edit = itemId;
+
 
                 if(TextUtils.isEmpty(task)){
                     Toast.makeText(context, "Something went wrong. Check your input values", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    myDb.updateTask(new Tasks(1, task, date,0));
+                    myDb.updateTask(new Tasks(id_edit, task, date,0));
                     //refresh the activity
                     ((Activity)context).finish();
                     context.startActivity(((Activity)context).getIntent());

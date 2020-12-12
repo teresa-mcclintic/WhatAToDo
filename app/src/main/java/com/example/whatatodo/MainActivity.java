@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         }else {
             taskView.setVisibility(View.GONE);
-            Toast.makeText(this, "All current tasks completed.Add more now.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "All current tasks completed!", Toast.LENGTH_LONG).show();
         }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
