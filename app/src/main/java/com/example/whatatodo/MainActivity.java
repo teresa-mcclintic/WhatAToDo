@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText dateField = (EditText)subView.findViewById(R.id.newTaskDate);
 
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add new Task");
         builder.setView(subView);
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 final String task = taskField.getText().toString();
                 final String date = dateField.getText().toString();
-                int status = 0;
+                final boolean status = false;
+
 
                 if (TextUtils.isEmpty(task)) {
                     Toast.makeText(MainActivity.this, "Something went wrong.", Toast.LENGTH_LONG).show();

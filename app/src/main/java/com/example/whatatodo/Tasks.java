@@ -4,9 +4,23 @@ public class Tasks {
     private int id;
     private String task;
     private String date;
-    private int status;
+    private boolean status;
 
-    public Tasks (String task, String date, int status){
+    /*public boolean isDone(Boolean done) {
+        if(status==1) {
+            isDone = true;
+         }
+        isDone=false;
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    private boolean isDone;*/
+
+    public Tasks (String task, String date, boolean status){
         this.task = task;
         this.date = date;
         this.status = status;
@@ -36,15 +50,15 @@ public class Tasks {
         this.date = date;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public Tasks (int id, String task, String date, int status){
+    public Tasks (int id, String task, String date, boolean status){
         this.id = id;
         this.task = task;
         this.date = date;

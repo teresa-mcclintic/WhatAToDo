@@ -19,6 +19,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
     public ImageView updateTask;
 
     public TaskViewHolder(@NonNull View itemView) {
+
         super(itemView);
         taskTextView = itemView.findViewById(R.id.task_name);
         dateTextView = itemView.findViewById(R.id.date);

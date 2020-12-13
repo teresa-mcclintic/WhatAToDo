@@ -43,18 +43,26 @@ import java.util.List;
             db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
             onCreate(db);
         }
+        public void setDone(int id, boolean done){
+            ContentValues values = new ContentValues();
+            values.put(STATUS_COL, done);
+            getWritableDatabase().update(TABLE_NAME, values, "_id=?", new String[]{Integer.toString(id)});
+        }
+
         public ArrayList<Tasks> listTasks(){
             String sql = "select * from " + TABLE_NAME;
-            SQLiteDatabase db = this.getReadableDatabase();
+            // SQLiteDatabase db = this.getReadableDatabase();
             ArrayList<Tasks> storeTasks = new ArrayList<>();
-            Cursor cursor = db.rawQuery(sql, null);
+            Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[]{ID, TASK_COL, DATE_COL, STATUS_COL},null, null,null, null, null);
             if (cursor.moveToFirst()){
                 do {
-                    int id = Integer.parseInt(cursor.getString(0));
-                    String task = cursor.getString(1);
-                    String date = cursor.getString(2);
-                    int checkbox = Integer.parseInt(cursor.getString(3));
-                    storeTasks.add(new Tasks(id, task, date, checkbox));
+                    Tasks tasks=new Tasks(
+                            cursor.getInt(cursor.getColumnIndex(ID)),
+                            cursor.getString(cursor.getColumnIndex(TASK_COL)),
+                            cursor.getString(cursor.getColumnIndex(DATE_COL)),
+                            cursor.getString(cursor.getColumnIndex(STATUS_COL))=="1");
+                   storeTasks.add(tasks);
+
                 }while (cursor.moveToNext());
 
             }
@@ -66,25 +74,39 @@ import java.util.List;
             ContentValues values = new ContentValues();
             values.put(TASK_COL, tasks.getTask());
             values.put(DATE_COL, tasks.getDate());
-            values.put(STATUS_COL, tasks.getStatus());
+            values.put(STATUS_COL, false);
             SQLiteDatabase db = this.getWritableDatabase();
             db.insert(TaskDatabase.TABLE_NAME, null, values);
         }
 
         public void updateTask(Tasks tasks){
             ContentValues values = new ContentValues();
+            int id = tasks.getId();
+            int status = 0;
+            if (tasks.getStatus()){
+                status = 1;
+            }
             values.put(ID, tasks.getId());
             values.put(TASK_COL, tasks.getTask());
             values.put(DATE_COL, tasks.getDate());
-            values.put(STATUS_COL, tasks.getStatus());
+            values.put(TaskDatabase.STATUS_COL, status);
             SQLiteDatabase db = this.getWritableDatabase();
-            db.update(TABLE_NAME, values, ID + "=?", new String[] {String.valueOf(tasks.getId())});
+            db.update(TABLE_NAME, values, TaskDatabase.ID + "=" + id,null);
+        }
+
+        public void updateStatus(int id, boolean checked){
+            ContentValues values = new ContentValues();
+            values.put(STATUS_COL, checked);
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.update(TABLE_NAME, values, ID+ "=?", new String[] {String.valueOf(id)});
+
         }
         public void deleteTask(int id){
             SQLiteDatabase db = this.getWritableDatabase();
             db.delete(TABLE_NAME, ID +"=?", new String[]{String.valueOf(id)});
 
         }
+
 
     }
 

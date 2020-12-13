@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -45,13 +46,23 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
         holder.taskTextView.setText(tasks.getTask());
         holder.dateTextView.setText(tasks.getDate());
-        holder.doneCheckBox.setChecked(toBoolean(tasks.getStatus()));
+        holder.doneCheckBox.setChecked(tasks.getStatus());
 
         holder.updateTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editTaskDialog(tasks);
             }
+        });
+       holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+               if (!b) {
+                   myDb.updateStatus(tasks.getId(), false);
+               }else{
+                   myDb.updateStatus(tasks.getId(),true);
+                }
+           }
         });
 
         holder.deleteTask.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +93,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         final EditText enter_task = (EditText)subView.findViewById(R.id.newTaskText);
         final EditText enter_date = (EditText)subView.findViewById(R.id.newTaskDate);
         final int itemId  = tasks.getId();
+        final boolean done = tasks.getStatus();
 
         if(tasks!= null){
             enter_task.setText(tasks.getTask());
@@ -98,6 +110,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
             public void onClick(DialogInterface dialog, int which) {
                 final String task = enter_task.getText().toString();
                 final String date = enter_date.getText().toString();
+                final boolean edit_done= done;
                 final int id_edit = itemId;
 
 
@@ -105,7 +118,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
                     Toast.makeText(context, "Something went wrong. Check your input values", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    myDb.updateTask(new Tasks(id_edit, task, date,0));
+                    myDb.updateTask(new Tasks(id_edit, task, date, edit_done));
                     //refresh the activity
                     ((Activity)context).finish();
                     context.startActivity(((Activity)context).getIntent());
