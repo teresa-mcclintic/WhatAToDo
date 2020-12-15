@@ -47,9 +47,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         holder.taskTextView.setText(tasks.getTask());
         holder.dateTextView.setText(tasks.getDate());
         holder.doneCheckBox.setChecked(tasks.getStatus());
-
         holder.updateTask.setOnClickListener(view -> editTaskDialog(tasks));
-       holder.doneCheckBox.setOnCheckedChangeListener((view, checked)-> {
+        holder.doneCheckBox.setOnCheckedChangeListener((view, checked)-> {
             myDb.updateStatus(listTasks.get(holder.getAbsoluteAdapterPosition()).getId(),
                     checked);});
        /*holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
