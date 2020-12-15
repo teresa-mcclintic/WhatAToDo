@@ -51,6 +51,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         holder.doneCheckBox.setOnCheckedChangeListener((view, checked)-> {
             myDb.updateStatus(listTasks.get(holder.getAbsoluteAdapterPosition()).getId(),
                     checked);});
+
+        //here is the other code i tried
        /*holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
