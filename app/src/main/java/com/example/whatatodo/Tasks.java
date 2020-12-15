@@ -1,5 +1,6 @@
 package com.example.whatatodo;
 
+@SuppressWarnings({"ALL", "unused"})
 public class Tasks {
     private int id;
     private String task;

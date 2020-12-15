@@ -3,12 +3,10 @@ package com.example.whatatodo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
     private Context context;

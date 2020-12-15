@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
 
     private TaskDatabase mDatabase;

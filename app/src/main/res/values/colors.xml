@@ -8,11 +8,7 @@
     <color name="black">#FF000000</color>
 
 
-        <color name="colorPrimary">@android:color/holo_blue_light</color>
-        <color name="colorPrimaryDark">#303F9F</color>
-        <color name="colorAccent">#FF4081</color>
-        <color name="colorWhite">#ffffff</color>
+    <color name="colorWhite">#ffffff</color>
         <color name="colorBlack">#000000</color>
-        <color name="colorBorder">#d0ced0</color>
 
 </resources>

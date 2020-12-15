@@ -1,7 +1,6 @@
 package com.example.whatatodo;
 
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.ContentValues;
@@ -9,14 +8,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import android.util.Log;
-import android.widget.CheckBox;
-
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
-    public class TaskDatabase extends SQLiteOpenHelper {
+@SuppressWarnings("ALL")
+public class TaskDatabase extends SQLiteOpenHelper {
         public static final int VERSION = 2;
         public static final String DB_NAME= "toDoListDB";
         public static final String TABLE_NAME = "ToDo";
@@ -45,11 +41,13 @@ import java.util.List;
             db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
             onCreate(db);
         }
-        public void setDone(int id, boolean done){
-            ContentValues values = new ContentValues();
-            values.put(STATUS_COL, done);
-            getWritableDatabase().update(TABLE_NAME, values, "id=?", new String[]{Integer.toString(id)});
-        }
+// --Commented out by Inspection START (12/15/2020 12:14 AM):
+//        public void setDone(int id, boolean done){
+//            ContentValues values = new ContentValues();
+//            values.put(STATUS_COL, done);
+//            getWritableDatabase().update(TABLE_NAME, values, "id=?", new String[]{Integer.toString(id)});
+//        }
+// --Commented out by Inspection STOP (12/15/2020 12:14 AM)
 
         public ArrayList<Tasks> listTasks(){
             String sql = "select * from " + TABLE_NAME;
@@ -58,7 +56,7 @@ import java.util.List;
             Cursor cursor = getReadableDatabase().query(TABLE_NAME, new String[]{ID, TASK_COL, DATE_COL, STATUS_COL},null, null,null, null, null);
             if (cursor.moveToFirst()){
                 do {
-                    Tasks tasks=new Tasks(
+                    @SuppressWarnings("StringEquality") Tasks tasks=new Tasks(
                             cursor.getInt(cursor.getColumnIndex(ID)),
                             cursor.getString(cursor.getColumnIndex(TASK_COL)),
                             cursor.getString(cursor.getColumnIndex(DATE_COL)),

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+@SuppressWarnings("ALL")
 public class TaskViewHolder extends RecyclerView.ViewHolder {
     public TextView taskTextView;
     public CheckBox doneCheckBox;
