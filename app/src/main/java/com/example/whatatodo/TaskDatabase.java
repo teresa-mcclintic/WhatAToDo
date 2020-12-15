@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import android.util.Log;
+import android.widget.CheckBox;
 
 import androidx.annotation.Nullable;
 
@@ -29,6 +30,7 @@ import java.util.List;
             super(context, DB_NAME, null, VERSION);}
 
 
+
         @Override
         public void onCreate(SQLiteDatabase db) {
                  Log.i("INFO", "onCreate was called");
@@ -46,7 +48,7 @@ import java.util.List;
         public void setDone(int id, boolean done){
             ContentValues values = new ContentValues();
             values.put(STATUS_COL, done);
-            getWritableDatabase().update(TABLE_NAME, values, "_id=?", new String[]{Integer.toString(id)});
+            getWritableDatabase().update(TABLE_NAME, values, "id=?", new String[]{Integer.toString(id)});
         }
 
         public ArrayList<Tasks> listTasks(){
@@ -62,6 +64,7 @@ import java.util.List;
                             cursor.getString(cursor.getColumnIndex(DATE_COL)),
                             cursor.getString(cursor.getColumnIndex(STATUS_COL))=="1");
                    storeTasks.add(tasks);
+
 
                 }while (cursor.moveToNext());
 
@@ -86,6 +89,7 @@ import java.util.List;
             if (tasks.getStatus()){
                 status = 1;
             }
+
             values.put(ID, tasks.getId());
             values.put(TASK_COL, tasks.getTask());
             values.put(DATE_COL, tasks.getDate());

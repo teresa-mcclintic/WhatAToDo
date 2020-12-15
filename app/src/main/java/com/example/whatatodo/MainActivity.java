@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TaskDatabase mDatabase;
     private ArrayList<Tasks> allTasks=new ArrayList<>();
     private TaskAdapter mAdapter;
+    private CheckBox cb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         taskView.setLayoutManager(linearLayoutManager);
         taskView.setHasFixedSize(true);
+        //((CheckBox) findViewById(R.id.checkBox).setChecked(true);
         mDatabase = new TaskDatabase(this);
         allTasks = mDatabase.listTasks();
 
@@ -103,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
 
     }
+
+    /*@Override
+    protected void onResume(Bundle savedInstanceState){
+        super.onResume();
+        cb.findViewById(R.id.checkBox).setChecked(true);
+    }*/
 
 
     @Override

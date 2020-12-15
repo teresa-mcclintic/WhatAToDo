@@ -23,8 +23,19 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         taskTextView = itemView.findViewById(R.id.task_name);
         dateTextView = itemView.findViewById(R.id.date);
+        doneCheckBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+        deleteTask = (ImageView)itemView.findViewById(R.id.delete_task);
+        updateTask = (ImageView)itemView.findViewById(R.id.edit_task);
+    }
+    public TaskViewHolder(@NonNull View itemView, boolean b) {
+
+        super(itemView);
+        taskTextView = itemView.findViewById(R.id.task_name);
+        dateTextView = itemView.findViewById(R.id.date);
         doneCheckBox = itemView.findViewById(R.id.checkBox);
         deleteTask = (ImageView)itemView.findViewById(R.id.delete_task);
         updateTask = (ImageView)itemView.findViewById(R.id.edit_task);
+
+        doneCheckBox.setChecked(b);
     }
 }

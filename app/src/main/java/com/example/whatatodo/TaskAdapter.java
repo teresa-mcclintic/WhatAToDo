@@ -48,13 +48,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         holder.dateTextView.setText(tasks.getDate());
         holder.doneCheckBox.setChecked(tasks.getStatus());
 
-        holder.updateTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editTaskDialog(tasks);
-            }
-        });
-       holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        holder.updateTask.setOnClickListener(view -> editTaskDialog(tasks));
+       holder.doneCheckBox.setOnCheckedChangeListener((view, checked)-> {
+            myDb.updateStatus(listTasks.get(holder.getAbsoluteAdapterPosition()).getId(),
+                    checked);});
+       /*holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
            @Override
            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                if (!b) {
@@ -63,7 +61,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
                    myDb.updateStatus(tasks.getId(),true);
                 }
            }
-        });
+        }
+        );*/
+        //});
+
 
         holder.deleteTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +82,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
 
     @Override
-    public int getItemCount() {
+    public int getItemCount(){
         return listTasks.size();
     }
 

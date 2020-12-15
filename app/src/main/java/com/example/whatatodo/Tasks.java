@@ -6,20 +6,6 @@ public class Tasks {
     private String date;
     private boolean status;
 
-    /*public boolean isDone(Boolean done) {
-        if(status==1) {
-            isDone = true;
-         }
-        isDone=false;
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
-    }
-
-    private boolean isDone;*/
-
     public Tasks (String task, String date, boolean status){
         this.task = task;
         this.date = date;
@@ -56,6 +42,11 @@ public class Tasks {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public boolean getStatus(int id){
+        this.id = id;
+        return this.status;
     }
 
     public Tasks (int id, String task, String date, boolean status){
