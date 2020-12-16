@@ -28,23 +28,23 @@ android:padding="12dp"
     android:autofillHints="" />
 
 
-<EditText
-    android:id="@+id/newTaskDate"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/newTaskDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-    android:hint="@string/enter_date"
-    android:textSize="14sp"
-    android:inputType="date"
-    android:maxLines="1"
-    android:layout_marginTop="24dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginEnd="8dp"
-    android:textColor="@color/colorBlack"
-    android:background="@drawable/blue_border"
-    android:padding="12dp"
-    tools:ignore="RtlHardcoded"
-    android:autofillHints="" />
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:autofillHints=""
+        android:background="@drawable/blue_border"
+        android:hint="@string/enter_date"
+        android:inputType="textShortMessage"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        tools:ignore="RtlHardcoded" />
 
 
 </LinearLayout>

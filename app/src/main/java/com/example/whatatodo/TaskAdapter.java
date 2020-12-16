@@ -27,7 +27,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
     public TaskAdapter(Context context, ArrayList<Tasks> listTasks) {
         this.context = context;
         this.listTasks = listTasks;
-        this.mArrayList=listTasks;
+        //this.mArrayList=listTasks;
         myDb = new TaskDatabase(context);
     }
 
@@ -48,8 +48,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         holder.doneCheckBox.setChecked(tasks.getStatus());
         holder.updateTask.setOnClickListener(view -> editTaskDialog(tasks));
         holder.doneCheckBox.setOnCheckedChangeListener((view, checked)-> {
-            myDb.updateStatus(listTasks.get(holder.getAbsoluteAdapterPosition()).getId(),
-                    checked);});
+            //myDb.updateStatus(listTasks.get(holder.getAbsoluteAdapterPosition()).getId(),
+                 //   checked);});
+
+
+                if (checked == true) {
+                    myDb.updateStatus(listTasks.get(holder.getAdapterPosition()).getId(), true);
+                }
+                else {
+                    myDb.updateStatus(listTasks.get(holder.getAdapterPosition()).getId(), false);
+                }
+        });
+
+
+
 
         //here is the other code i tried
        /*holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

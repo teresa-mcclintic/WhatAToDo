@@ -41,13 +41,6 @@ public class TaskDatabase extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
             onCreate(db);
         }
-// --Commented out by Inspection START (12/15/2020 12:14 AM):
-//        public void setDone(int id, boolean done){
-//            ContentValues values = new ContentValues();
-//            values.put(STATUS_COL, done);
-//            getWritableDatabase().update(TABLE_NAME, values, "id=?", new String[]{Integer.toString(id)});
-//        }
-// --Commented out by Inspection STOP (12/15/2020 12:14 AM)
 
         public ArrayList<Tasks> listTasks(){
             String sql = "select * from " + TABLE_NAME;
@@ -60,7 +53,7 @@ public class TaskDatabase extends SQLiteOpenHelper {
                             cursor.getInt(cursor.getColumnIndex(ID)),
                             cursor.getString(cursor.getColumnIndex(TASK_COL)),
                             cursor.getString(cursor.getColumnIndex(DATE_COL)),
-                            cursor.getString(cursor.getColumnIndex(STATUS_COL))=="1");
+                            cursor.getInt(cursor.getColumnIndex(STATUS_COL))==1);
                    storeTasks.add(tasks);
 
 
@@ -101,7 +94,7 @@ public class TaskDatabase extends SQLiteOpenHelper {
             values.put(STATUS_COL, checked);
             SQLiteDatabase db = this.getWritableDatabase();
             db.update(TABLE_NAME, values, ID+ "=?", new String[] {String.valueOf(id)});
-
+            //db.update(TABLE_NAME, values, "_=?", new String[] {Integer.toString(id)});
         }
         public void deleteTask(int id){
             SQLiteDatabase db = this.getWritableDatabase();

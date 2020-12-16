@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         taskView.setLayoutManager(linearLayoutManager);
         taskView.setHasFixedSize(true);
-        //((CheckBox) findViewById(R.id.checkBox).setChecked(true);
         mDatabase = new TaskDatabase(this);
         allTasks = mDatabase.listTasks();
 
@@ -108,11 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
+    //@Override
     protected void onResume(Bundle savedInstanceState){
         super.onResume();
-        cb.findViewById(R.id.checkBox).setChecked(true);
-    }*/
+       // Button button = findViewById(R.id.checkBox);
+        //button.setOnClickListener((view -> startActivity(getIntent())));
+
+    }
 
 
     @Override
