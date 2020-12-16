@@ -84,7 +84,7 @@ public class TaskDatabase extends SQLiteOpenHelper {
             values.put(ID, tasks.getId());
             values.put(TASK_COL, tasks.getTask());
             values.put(DATE_COL, tasks.getDate());
-            values.put(TaskDatabase.STATUS_COL, status);
+            values.put(STATUS_COL, status);
             SQLiteDatabase db = this.getWritableDatabase();
             db.update(TABLE_NAME, values, TaskDatabase.ID + "=" + id,null);
         }

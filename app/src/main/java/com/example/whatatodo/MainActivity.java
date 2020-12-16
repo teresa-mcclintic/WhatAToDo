@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         final EditText taskField = (EditText)subView.findViewById(R.id.newTaskText);
         final EditText dateField = (EditText)subView.findViewById(R.id.newTaskDate);
 
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add new Task");
         builder.setView(subView);

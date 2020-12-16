@@ -62,22 +62,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
 
 
-
-        //here is the other code i tried
-       /*holder.doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-           @Override
-           public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-               if (!b) {
-                   myDb.updateStatus(tasks.getId(), false);
-               }else{
-                   myDb.updateStatus(tasks.getId(),true);
-                }
-           }
-        }
-        );*/
-        //});
-
-
         holder.deleteTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
